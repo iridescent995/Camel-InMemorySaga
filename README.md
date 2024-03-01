@@ -52,7 +52,7 @@ mvn clean compile exec:java
 # How to Test the Application 
 Open postman and hit this **GET** endpoint:
 ```
-localhost:8006/createTracking
+localhost:8006/createInventory
 ```
 Note: By Default application run on **8006** port. Which can be changed under `application.yml` file
 
