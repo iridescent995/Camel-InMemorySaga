@@ -26,3 +26,36 @@ We will create 1 route `direct:createInventory` with 2 saga routes for `compensa
 
         from("direct:cancelInventory").bean(cancelInventoryService, "cancelInventory");
 ```
+
+When creating a new Inventory, bean `createInventoryService` is called (you can refer to CreateInventoryService.java)
+
+Following actions are undertaken by SAGA: 
+1. Positive Case: If new inventory is created, after execution of `direct:newInventory` "completion" route is called ie `direct:completeInventory`
+2. Negative Case: If error is thrown while creating Inventory, "compensation" route is called ie `direct:cancelInventory`
+
+
+# How to Run this Application 
+This is a simple maven application, just clone the repo and open cmd and run:
+
+To Compile: 
+```
+mvn clean install
+```
+
+To run the spring application
+```
+mvn clean compile exec:java
+```
+
+# How to Test the Application 
+Open postman and hit this **GET** endpoint:
+```
+localhost:8006/createTracking
+```
+Note: By Default application run on **8006** port. Which can be changed under `application.yml` file
+
+```
+server:
+  port: 8006
+```
+
